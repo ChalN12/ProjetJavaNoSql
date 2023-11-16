@@ -1,24 +1,21 @@
-<!DOCTYPE html>
 <html>
 <head>
-    <title>Mon magasin</title>
+    <script>
+        function callJava() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "HelloWorld.java", true);
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    var output = xhr.responseText;
+                    document.getElementById("result").innerHTML = output;
+                    }
+            };
+            xhr.send();
+        }
+    </script>
 </head>
 <body>
-<h1>Bienvenue dans mon magasin</h1>
-<p>Voici les articles disponibles:</p>
-<ul>
-    <li><input type="radio" name="article" value="livre">Livre</li>
-    <li><input type="radio" name="article" value="stylo">Stylo</li>
-    <li><input type="radio" name="article" value="cahier">Cahier</li>
-</ul>
-<button onclick="acheter()">Acheter</button>
-<script>
-    function acheter() {
-        var article = document.querySelector('input[name="article"]:checked').value;
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "acheter.java?article=" + article, true);
-        xhr.send();
-    }
-</script>
+<button onclick="callJava()">Appeler le programme Java</button>
+<div id="result"></div>
 </body>
 </html>
