@@ -1,21 +1,25 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <script>
-        function callJava() {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "HelloWorld.java", true);
-            xhr.onload = function() {
-                if (xhr.status == 200) {
-                    var output = xhr.responseText;
-                    document.getElementById("result").innerHTML = output;
-                    }
-            };
-            xhr.send();
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Click</title>
 </head>
 <body>
-<button onclick="callJava()">Appeler le programme Java</button>
+<button id="myButton">Click me</button>
 <div id="result"></div>
+
+<script>
+    document.getElementById('myButton').addEventListener('click', function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://localhost:8080/hello', true);
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                document.getElementById('result').innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send();
+    });
+</script>
 </body>
 </html>

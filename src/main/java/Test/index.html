@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appel de programme Java depuis HTML</title>
+</head>
+<body>
+<h1>Cliquez sur le bouton pour afficher la sortie du programme Java</h1>
+<button onclick="callJavaProgram()">Exécuter le programme Java</button>
+<div id="outputContainer">
+    <p>Sortie du programme Java : <span id="outputText"></span></p>
+</div>
+
+<script>
+    function callJavaProgram() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                document.getElementById("outputText").innerHTML = xhr.responseText;
+            }
+        };
+        xhr.open("GET", "RunProgram.java", true);
+        xhr.send();
+    }
+</script>
+</body>
+</html>
